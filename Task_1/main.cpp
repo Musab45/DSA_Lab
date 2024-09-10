@@ -69,7 +69,7 @@ void addHouse(int index)
 	available[index].setPrice(price);
 }
 
-void showHouses(int index)
+void showHouse(int index)
 {
 	std::cout << "Owner\t" << "Address\t" << "Bedrooms\t" << "Price\t" << std::endl;
 	std::cout << available[0].getOwner() << "\t" << available[0].getAddress() << "\t" << available[0].getBedrooms() << "\t" << available[0].getPrice() << "\t" << std::endl;
@@ -79,7 +79,7 @@ int main()
 {
 	int index = 0;
 	addHouse(0);
-
+	showHouse(0);
 	
 	return 0;
 }
