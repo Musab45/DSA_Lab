@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<cstdlib>
 
 class House
 {
@@ -58,9 +59,13 @@ void addHouse(int index)
 	int bedrooms = 0;
 	float price = 0.0;
 
+	std::cout << "Enter owner's name: ";
 	getline(std::cin, owner);
+	std::cout << "Enter address: ";
 	getline(std::cin, address);
+	std::cout << "Enter number of bedrooms:";
 	std::cin >> bedrooms;
+	std::cout << "Enter price:";
 	std::cin >> price;
 
 	available[index].setOwner(owner);
@@ -75,11 +80,42 @@ void showHouse(int index)
 	std::cout << available[0].getOwner() << "\t" << available[0].getAddress() << "\t" << available[0].getBedrooms() << "\t" << available[0].getPrice() << "\t" << std::endl;
 }
 
+int property_add_index = 0;
+
 int main()
 {
-	int index = 0;
-	addHouse(0);
-	showHouse(0);
-	
+	char main_menu_choice;
+
+	std::cout << "   -- Property Management Software --   " << std::endl;
+	std::cout << "1. Add Property" << std::endl;
+	std::cout << "2. View Properties" << std::endl;
+	std::cout << "3. Exit" << std::endl;
+	std::cout << "Choice: ";
+
+	std::cin >> main_menu_choice;
+
+	system("cls");
+
+	do
+	{
+		switch (main_menu_choice)
+		{
+		case'1':
+			addHouse(property_add_index);
+			char add_choice;
+			std::cout << "Add another?(y/n)" << std::endl;
+			std::cout << "Choice: ";
+			std::cin >> add_choice;
+			while (add_choice != 'n' || add_choice != 'N')
+			{
+				if (add_choice == 'y' || add_choice == 'Y')
+				{
+					property_add_index++;
+					addHouse(property_add_index);
+				}
+			}
+		}
+	} while (main_menu_choice != 3);
+
 	return 0;
 }
