@@ -52,6 +52,9 @@ public:
 //Array of available houses
 House available[100];
 
+int houses_in_database = 0;
+
+
 void addHouse(int index)
 {
 	std::string owner;
@@ -59,6 +62,7 @@ void addHouse(int index)
 	int bedrooms = 0;
 	float price = 0.0;
 
+	std::cin.ignore();
 	std::cout << "Enter owner's name: ";
 	getline(std::cin, owner);
 	std::cout << "Enter address: ";
@@ -72,12 +76,16 @@ void addHouse(int index)
 	available[index].setAddress(address);
 	available[index].setBedrooms(bedrooms);
 	available[index].setPrice(price);
+	houses_in_database++;
 }
 
-void showHouse(int index)
+void showHouse()
 {
 	std::cout << "Owner\t" << "Address\t" << "Bedrooms\t" << "Price\t" << std::endl;
-	std::cout << available[0].getOwner() << "\t" << available[0].getAddress() << "\t" << available[0].getBedrooms() << "\t" << available[0].getPrice() << "\t" << std::endl;
+	for (int i = 0; i <= houses_in_database; i++)
+	{
+		std::cout << available[i].getOwner() << "\t" << available[i].getAddress() << "\t" << available[i].getBedrooms() << "\t" << available[i].getPrice() << "\t" << std::endl;
+	}
 }
 
 int property_add_index = 0;
@@ -86,34 +94,28 @@ int main()
 {
 	char main_menu_choice;
 
-	std::cout << "   -- Property Management Software --   " << std::endl;
-	std::cout << "1. Add Property" << std::endl;
-	std::cout << "2. View Properties" << std::endl;
-	std::cout << "3. Exit" << std::endl;
-	std::cout << "Choice: ";
-
-	std::cin >> main_menu_choice;
-
-	system("cls");
-
 	do
 	{
+		std::cout << "   -- Property Management Software --   " << std::endl;
+		std::cout << "1. Add Property" << std::endl;
+		std::cout << "2. View Properties" << std::endl;
+		std::cout << "3. Exit" << std::endl;
+		std::cout << "Choice: ";
+
+		std::cin >> main_menu_choice;
+
+		system("cls");
 		switch (main_menu_choice)
 		{
 		case'1':
 			addHouse(property_add_index);
-			char add_choice;
-			std::cout << "Add another?(y/n)" << std::endl;
-			std::cout << "Choice: ";
-			std::cin >> add_choice;
-			while (add_choice != 'n' || add_choice != 'N')
-			{
-				if (add_choice == 'y' || add_choice == 'Y')
-				{
-					property_add_index++;
-					addHouse(property_add_index);
-				}
-			}
+			system("cls");
+			break;
+		case'2':
+			showHouse();
+			system("pause");
+			system("cls");
+			break;
 		}
 	} while (main_menu_choice != 3);
 
