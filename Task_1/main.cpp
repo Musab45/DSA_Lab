@@ -99,10 +99,12 @@ int main()
         case'1':
             
             std::cout << "Enter details for property " << index + 1 << std::endl;
+
+            std::cin.ignore();
             std::cout << "Owner: ";
-            std::cin >> owner;
+            std::getline(std::cin, owner);
             std::cout << "Address: ";
-            std::cin >> address;
+            std::getline(std::cin, address);
             std::cout << "Bedrooms: ";
             std::cin >> bedrooms_check;
             std::cout << "Price: ";
@@ -122,8 +124,8 @@ int main()
             }
             else
             {
-                std::cout << "Property entered is not valid. It must be of the following requirements:" << std::endl;
-                std::cout << "1. More than 2 bedrooms\n 2. More than 1000 in price" << std::endl;
+                std::cout << "\nProperty entered is not valid. It must be of the following requirements:" << std::endl;
+                std::cout << "1. More than 2 bedrooms\n2. More than 1000 in price" << std::endl;
                 system("pause");
                 system("cls");
             }
