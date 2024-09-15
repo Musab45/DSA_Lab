@@ -89,6 +89,7 @@ int main()
     char menu_selection;
     char filter_selection;
     std::string filter_city;
+    int filter_bedroom;
 
     do
     {
@@ -183,9 +184,22 @@ int main()
                     }
                 }
                 break;
+            case'4':
+                std::cout << "Enter numeber of bedrooms: ";
+                std::cin >> filter_bedroom;
+                for (int i = 0; i < index; i++)
+                {
+                    if (houses[i].getBedrooms() == filter_bedroom)
+                    {
+                        std::cout << "\nDetails of house " << i + 1 << ":" << std::endl;
+                        houses[i].displayHouseDetails();
+                    }
+                }
+                break;
             }
             system("pause");
             system("cls");
+            break;
         }
     } while (menu_selection != 3);
 	return 0;
