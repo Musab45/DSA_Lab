@@ -13,7 +13,7 @@ public:
 	House(std::string ownerName, std::string housecity, int numBedrooms, float housePrice)
 		: owner(ownerName), city(housecity), bedrooms(numBedrooms), price(housePrice) {}
 
-    House() : owner("Unknown"), city("Unknown"), bedrooms(0), price(0.0f) {}
+    House() : owner("Unassigned"), city("Unassigned"), bedrooms(0), price(0.0f) {}
 
     //Getters
     std::string getOwner() 
@@ -77,6 +77,7 @@ public:
 int main()
 {
     House* houses = new House[100];
+
     std::string owner;
     std::string city;
     int bedrooms;
@@ -84,8 +85,11 @@ int main()
     float price;
     float price_check;
     int index = 0;
+
     char menu_selection;
     char filter_selection;
+    std::string filter_city;
+
     do
     {
         std::cout << "   -- Property Manager --   " << std::endl;
@@ -151,13 +155,28 @@ int main()
                 break;
             case'2':
                 std::cout << "Enter city name: ";
-                std::string filter_city;
                 std::cin.ignore();
                 std::getline(std::cin, filter_city);
 
                 for (int i = 0; i < index; i++)
                 {
                     if (houses[i].getcity().find(filter_city) != std::string::npos)
+                    {
+                        std::cout << "\nDetails of house " << i + 1 << ":" << std::endl;
+                        houses[i].displayHouseDetails();
+                    }
+                }
+                break;
+            case'3':
+                std::cout << "Enter price range:" << std::endl;
+                float low_price, high_price;
+                std::cout << "Low:";
+                std::cin >> low_price;
+                std::cout << "High: ";
+                std::cin >> high_price;
+                for (int i = 0; i < index; i++)
+                {
+                    if (houses[i].getPrice() >= low_price && houses[i].getPrice() <= high_price)
                     {
                         std::cout << "\nDetails of house " << i + 1 << ":" << std::endl;
                         houses[i].displayHouseDetails();
