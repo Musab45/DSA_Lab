@@ -65,7 +65,8 @@ public:
         }
     }
 
-    void displayHouseDetails() {
+    void displayHouseDetails() 
+    {
         std::cout << "Owner: " << owner << std::endl;
         std::cout << "Address: " << address << std::endl;
         std::cout << "Bedrooms: " << bedrooms << std::endl;
@@ -79,7 +80,9 @@ int main()
     std::string owner;
     std::string address;
     int bedrooms;
+    int bedrooms_check;
     float price;
+    float price_check;
     int index = 0;
     char menu_selection;
     do
@@ -101,20 +104,34 @@ int main()
             std::cout << "Address: ";
             std::cin >> address;
             std::cout << "Bedrooms: ";
-            std::cin >> bedrooms;
+            std::cin >> bedrooms_check;
             std::cout << "Price: ";
-            std::cin >> price;
+            std::cin >> price_check;
 
-            // Set the values for each house object
-            houses[index].setOwner(owner);
-            houses[index].setAddress(address);
-            houses[index].setBedrooms(bedrooms);
-            houses[index].setPrice(price);
-            index++;
+            if (bedrooms_check > 2 && price_check > 1000)
+            {
+                bedrooms = bedrooms_check;
+                price = price_check;
+
+                //values for each house object
+                houses[index].setOwner(owner);
+                houses[index].setAddress(address);
+                houses[index].setBedrooms(bedrooms);
+                houses[index].setPrice(price);
+                index++;
+            }
+            else
+            {
+                std::cout << "Property entered is not valid. It must be of the following requirements:" << std::endl;
+                std::cout << "1. More than 2 bedrooms\n 2. More than 1000 in price" << std::endl;
+                system("pause");
+                system("cls");
+            }
             system("cls");
             break;
         case'2':
-            for (int i = 0; i < index; i++) {
+            for (int i = 0; i < index; i++) 
+            {
                 std::cout << "\nDetails of house " << i + 1 << ":" << std::endl;
                 houses[i].displayHouseDetails();
             }
