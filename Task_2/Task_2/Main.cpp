@@ -1,13 +1,17 @@
 #include <iostream>
-#define max_value 5
 
 template <class T> class Stack
 {
 private:
 	int top;
-	T array[max_value];
+	int size; //get length of the input string to set size of array
+	T* array; //dynamic array allocation
 public:
-	Stack() { top = -1; }
+	Stack(int s): size(s) //constructor with size as parameter
+	{
+		top = -1;
+		array = new T[size];
+	}
 	bool isEmpty()
 	{
 		if (top < 0)
@@ -18,7 +22,7 @@ public:
 	}
 	bool isFull()
 	{
-		if (top == 5)
+		if (top == size)
 		{
 			return true;
 		}
@@ -53,40 +57,45 @@ public:
 	{
 		if (!isEmpty())
 		{
-			return array[5];
+			return array[size];
 		}
 	}
 };	
 
 void main()
 {
-	int loop = 1;
 	do
 	{
 		std::string input_string;
 		std::string palindrome_check;
+
 		std::cout << "Enter a string: ";
 		std::cin >> input_string;
-		Stack<char> palindrome;
+
+		Stack<char> palindrome(input_string.length()); //Declaring char as data type for the class and passing input string's length as parameter
+
 		for (int i = 0; i < input_string.length(); i++)
 		{
 			palindrome.push(input_string[i]);
-		};
-		for (int j = 0; j < max_value; j++)
+		}
+
+		for (int j = 0; j < input_string.length(); j++)
 		{
 			palindrome_check += palindrome.pop();
 		}
+
 		if (palindrome_check == input_string)
 		{
 			std::cout << "Is Palindrome!" << std::endl;
 			system("pause");
 			system("cls");
 		}
+
 		else
 		{
 			std::cout << "Is not Palindrome!" << std::endl;
 			system("pause");
 			system("cls");
 		}
-	} while (loop>0);
+	} while (-1);
 }
