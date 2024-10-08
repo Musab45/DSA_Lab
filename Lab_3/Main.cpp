@@ -1,7 +1,5 @@
 #include<iostream>
 #include<stack>
-#include<algorithm>
-
 //Operator Check
 bool isOperator(char C)
 {
