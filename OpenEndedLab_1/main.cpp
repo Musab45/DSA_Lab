@@ -99,10 +99,12 @@ public:
 		}
 		while (current != nullptr)
 		{
+			std::cout << "==============================" << std::endl;
 			std::cout << "Match " << i << ": " << current->data << std::endl;
 			current = current->next;
 			i++;
 		}
+		std::cout << "==============================" << std::endl;
 	}
 	//Display Score in Reverse Sequence
 	void displayReverseSequence()
@@ -121,10 +123,12 @@ public:
 		}
 		while (current != nullptr) 
 		{
+			std::cout << "==============================" << std::endl;
 			std::cout << "Match " << i << ": " << current->data << std::endl;
 			current = current->prev;
 			i--;
 		}
+		std::cout << "==============================" << std::endl;
 	}
 	//----Min/Max Score
 	int MinScore()
@@ -179,6 +183,8 @@ int main()
 		std::cout << "1. Add Match Details" << std::endl;
 		std::cout << "2. Remove Match Details" << std::endl;
 		std::cout << "3. View Match Details" << std::endl;
+		std::cout << "4. View Minimum Score" << std::endl;
+		std::cout << "5. View Maximum Score" << std::endl;
 		std::cout << "===============================" << std::endl;
 		std::cout << "Enter Selection: ";
 		std::cin >> choice;
@@ -252,6 +258,20 @@ int main()
 				system("cls");
 				break;
 			}
+			break;
+		case'4':
+			std::cout << "=============================================" << std::endl;
+			std::cout << "Minimum Score from All Matches: " << matchList.MinScore() << std::endl;
+			std::cout << "=============================================" << std::endl;
+			system("pause");
+			system("cls");
+			break;
+		case'5':
+			std::cout << "=============================================" << std::endl;
+			std::cout << "Maximum Score from All Matches: " << matchList.MaxScore() << std::endl;
+			std::cout << "=============================================" << std::endl;
+			system("pause");
+			system("cls");
 			break;
 		default:
 			std::cout << "Incorrect Input! Try Again." << std::endl;
